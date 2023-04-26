@@ -6,6 +6,8 @@ class Node {
     }
 }
 class BinarySearchTree {
+
+    //var root =15
     constructor() {
         this.root = null;                           // an instance created
     }
@@ -35,18 +37,18 @@ class BinarySearchTree {
         this.root = this.removeNode(this.root, data);
     }
     removeNode(node, key) {
-        if (node === null)
+        if (node === null)//recursion base condition
             return null;
 
         else if (key < node.data) {                     //key is lesser than current root
-            node.left = this.removeNode(node.left, key);
+            node.left = this.removeNode(node.left, key);//5,5
             return node;
         }
         else if (key > node.data) {                     //key is bigger than current root
             node.right = this.removeNode(node.right, key);
             return node;
         }
-        else {                                          // key equal to current node
+        else {                                         // key equal to current node
             if (node.left === null && node.right === null) {    //current node has no child
                 node = null;
                 return node;
@@ -150,7 +152,7 @@ BST.insert(27);
 //       / \   / \
 //      7  13 22  27
 //     / \    /
-//    5   9  17
+//    5   9  
 
 var root = BST.getRootNode();
 
@@ -226,7 +228,7 @@ BST.preorder(root);
 console.log("level order traversal");
 /* function to print level order traversal of tree */
 function printLevelOrder() {
-    var h = height(root);
+    var h = height(root);//4
     var i;
     for (i = 1; i <= h; i++)
         printCurrentLevel(root, i);
@@ -236,13 +238,13 @@ function printLevelOrder() {
  * Compute the "height" of a tree -- the number of nodes along the longest path
  * from the root node down to the farthest leaf node.
  */
-function height(root) {
-    if (root == null)
+function height(node) {//8
+    if (node == null)
         return 0;
     else {
         /* compute height of each subtree */
-        var lheight = height(root.left);
-        var rheight = height(root.right);
+        var lheight = height(node.left);//3
+        var rheight = height(node.right);//3
 
         /* use the larger one */
         if (lheight > rheight)
@@ -253,14 +255,14 @@ function height(root) {
 }
 
 /* Print nodes at the current level */
-function printCurrentLevel(root, level) {
-    if (root == null)
+function printCurrentLevel(node, level) {
+    if (node == null)
         return;
     if (level == 1)
-        console.log(root.data + " ");
+        console.log(node.data + " ");
     else if (level > 1) {
-        printCurrentLevel(root.left, level - 1);
-        printCurrentLevel(root.right, level - 1);
+        printCurrentLevel(node.left, level - 1);          
+        printCurrentLevel(node.right, level - 1);
     }
 }
 printLevelOrder(root);
@@ -269,3 +271,8 @@ printLevelOrder(root);
 //        10   25
 //       / \   / \
 //      9  13 22  27
+
+
+
+
+//output of BFS  8 3 10 1 6 14 4 7 13 
